@@ -1,0 +1,14 @@
+/*
+Theme Name: Your theme name
+Theme URI: https://myawesometheme.awesome
+Author: Tadej Stanic
+Author URI: https://www.linkedin.com/in/tadejstanic
+Description: The theme for my awesome site
+Version: 1.0
+License: GNU General Public License v2 or later
+License URI: http://www.gnu.org/licenses/gpl-2.0.html
+Text Domain: my-fist-theme
+This theme, like WordPress, is licensed under the GPL.
+Use it to make something cool, have fun, and share what you've learned with others.
+*/
+@import "compiled/main.css?v=1483428446007";
