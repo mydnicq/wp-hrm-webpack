@@ -37,8 +37,8 @@ This example provides only a few Wordpress template files just to show a typical
 With Browsersync support we're able to see every single change in WP template file in the browser right after the file is saved without page refresh.
 
 ###The final step
-When your theme is ready to be published, you are entering the build phase. This step actually extracts all required theme files and copy them into the 'build' directory, which is then ready to become an 'official' WP theme package. You can move it into your local Wordpress 'themes' directory, rename it to whatever you want, modify theme description data in 'style.css' and finally activate the new theme. 
+When your theme is ready to be published, you are entering the build phase. This step actually extracts all required theme files and copy them into the 'build' directory, which is then ready to become an 'official' WP theme package. You can move it into your local Wordpress 'themes' directory, rename it to whatever you want, modify theme description data in 'style.css' and finally activate the new theme.
 
 ##Credits
 This example is heavily inspired by this [repo](https://github.com/bionikspoon/webpack-hmr-wordpress)
-Thank you @ThinkCERCA
+Thank you @bionikspoon
