@@ -2,6 +2,8 @@
 
 The aim of this example is to present a simple workflow of a Wordpress theme development which leverages all goodness of a [Webpack](https://webpack.github.io/) module bundler including with a hot module replacement (HMR) which in combination with [Browsersync](https://www.browsersync.io/) provides a very fast developing experience.
 
+> This example uses Node.js v7.
+
 ##Installation
 Create a folder for your new theme in your local Wordpress 'themes' directory. Then clone this repository into it. When done, install all required packages:
 ```

@@ -2,6 +2,9 @@
   "name": "wp-hrm-bsync",
   "version": "1.0.0",
   "description": "Example of a Wordpress Theme developing workflow with webpack, hmr and browsersync.",
+  "engines" : {
+    "node" : ">=7.2.0" 
+  },
   "main": "index.js",
   "scripts": {
     "build": "node --harmony ./scripts/build.js",
