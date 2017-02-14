@@ -9,7 +9,7 @@ Create a folder for your new theme in your local Wordpress 'themes' directory. T
 ```
 $ npm install
 
-or even faster way with yarn
+or even faster with yarn
 
 $ yarn
 ```

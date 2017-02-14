@@ -57,7 +57,9 @@ function getEnv() {
 function getFilesByExtension(path, ext) {
   return fileHound.create()
     .paths(path)
+    .discard("node_modules")
+    .discard("build")
     .ext(ext)
-    .depth(0)
+    .depth(1)
     .find();
 }
