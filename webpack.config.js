@@ -23,11 +23,7 @@ module.exports = {
         test: /\.js$/,
         loader: 'babel-loader',
         exclude: /node_modules/,
-        include: PATHS.src(),
-        query: {
-          presets: ['es2015'],
-          plugins: ["transform-runtime"]
-        }
+        include: PATHS.src()
       },
       {
         test: /\.css$/,

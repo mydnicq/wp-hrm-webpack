@@ -26,6 +26,7 @@
     "fs-promise": "^1.0.0",
     "postcss": "^5.2.8",
     "postcss-cssnext": "^2.9.0",
+    "postcss-import": "^9.1.0",
     "postcss-loader": "^1.2.1",
     "style-loader": "^0.13.1",
     "webpack": "^2.2.1",
