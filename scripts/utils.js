@@ -5,7 +5,8 @@ const fileHound = require('filehound');
 module.exports = {
   addMainCss,
   getEnv,
-  getFilesByExtension
+  getFilesByExtension,
+  getScreenshot
 }
 
 async function addMainCss() {
@@ -62,4 +63,12 @@ function getFilesByExtension(path, ext) {
     .ext(ext)
     .depth(1)
     .find();
+}
+
+function getScreenshot(path) {
+  return fileHound.create()
+    .paths(path)
+    .depth(0)
+    .glob('screenshot.png')
+    .find()
 }

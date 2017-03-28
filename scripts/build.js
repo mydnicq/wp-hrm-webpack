@@ -36,7 +36,8 @@ async function finalize() {
 
   let phpFiles = await utils.getFilesByExtension(PATHS.base(), 'php');
   let cssFile = await utils.getFilesByExtension(PATHS.base(), 'css');
-  let allFiles = phpFiles.concat(cssFile);
+  let screenshotFile = await utils.getScreenshot(PATHS.base());
+  let allFiles = phpFiles.concat(cssFile, screenshotFile);
   allFiles = allFiles.map((f) => fsp.copy(f, `${buildDir}/${f.replace(PATHS.base(), '')}`));
 
   return await Promise.all(allFiles);
