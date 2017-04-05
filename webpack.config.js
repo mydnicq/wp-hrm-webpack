@@ -4,6 +4,7 @@ const webpack = require('webpack');
 const path = require('path');
 const WriteFilePlugin = require('write-file-webpack-plugin');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
+const CopyWebpackPlugin = require('copy-webpack-plugin');
 
 const ENV = utils.getEnv();
 const WATCH = global.watch || false;
@@ -32,7 +33,7 @@ module.exports = {
     ]
   },
 
-  devtool: ENV === 'production' ? 'source-map' : 'inline-source-map',
+  devtool: ENV === 'production' ? false : 'inline-source-map',
 
   plugins: getPlugins(ENV),
 
@@ -56,18 +57,23 @@ function getEntry() {
 function getPlugins(env) {
   const plugins = [
     new webpack.DefinePlugin({ 'process.env.NODE_ENV': JSON.stringify(env) }),
+    new CopyWebpackPlugin([{ from: PATHS.src('assets'), to: 'assets' }], { ignore: ['*.psd'] })
   ];
 
   switch (env) {
 
     case 'production':
-      plugins.push(new webpack.optimize.UglifyJsPlugin({ compress: { warnings: false } }));
       plugins.push(new ExtractTextPlugin('main.css'));
+      plugins.push(new webpack.optimize.UglifyJsPlugin({
+        sourceMap: true,
+        minimize: true,
+        compress: { warnings: false }
+      }));
       break;
 
     case 'development':
       plugins.push(new webpack.HotModuleReplacementPlugin());
-      plugins.push(new webpack.NoErrorsPlugin());
+      plugins.push(new webpack.NoEmitOnErrorsPlugin());
       plugins.push(new WriteFilePlugin());
       break;
   }
@@ -79,7 +85,7 @@ function getCssLoader() {
   if (ENV === 'production') {
     return ExtractTextPlugin.extract({
       fallbackLoader: "style-loader",
-      loader: "css-loader?importLoaders=1!postcss-loader"
+      loader: "css-loader?importLoaders=1&minimize=true!postcss-loader"
     });
   } else {
     return 'style-loader!css-loader?importLoaders=1!postcss-loader';
