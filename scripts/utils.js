@@ -12,7 +12,6 @@ module.exports = {
 
 async function addMainCss() {
   const ENV = getEnv();
-  const mainCssFile = `@import "compiled/main.css?v=${new Date().getTime()}";`
 
   const rl = readline.createInterface({
     input: await fsp.createReadStream('./style.css')
@@ -20,31 +19,21 @@ async function addMainCss() {
 
   let modifiedData = '';
 
+  // This switch theme name to test and deploy built theme easily.
   rl.on('line', (line) => {
-    let regExp = /\main.css/;
-    // This prevents including main.css file in developemnt mode
-    // because in this mode css is inlined via webpack hot module replacement.
-    if ((regExp.exec(line)) !== null && ENV == 'development') return;
-
-    if ((regExp.exec(line)) !== null && ENV == 'production') {
-      modifiedData += `${mainCssFile}\n`;
+    let regExp = /\Theme Name:/;
+    if ((regExp.exec(line)) !== null && ENV == 'development') {
+      modifiedData += `Theme Name: ${THEME_NAME}-DEV\n`;
+    } else if ((regExp.exec(line)) !== null && ENV == 'production') {
+      modifiedData += `Theme Name: ${THEME_NAME}\n`;
     } else {
-      let regExp = /\Theme Name:/;
-      if ((regExp.exec(line)) !== null && ENV == 'development') {
-        modifiedData += `Theme Name: ${THEME_NAME}-DEV\n`;
-      } else if ((regExp.exec(line)) !== null && ENV == 'production') {
-        modifiedData += `Theme Name: ${THEME_NAME}\n`;
-      } else {
-        modifiedData += `${line}\n`;
-      }
+      modifiedData += `${line}\n`;
     }
   });
 
   rl.on('close', async() => {
-    if (modifiedData.indexOf('compiled/main.css') == -1 && ENV == 'production') {
-      modifiedData += `${mainCssFile}\n`;
-    }
     if (ENV == 'production') await fsp.copy('./style.css', './style.tmp');
+    if (ENV == 'development') await fsp.copy('./style.css', './compiled/main.css');
     await fsp.writeFile('./style.css', modifiedData, 'utf8');
   });
 }
