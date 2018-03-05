@@ -1,7 +1,8 @@
 {
   "name": "wp-hrm-bsync",
   "version": "1.0.2",
-  "description": "Example of a Wordpress Theme developing workflow with webpack, hmr and browsersync.",
+  "description":
+    "Example of a Wordpress Theme developing workflow with webpack, hmr and browsersync.",
   "engines": {
     "node": ">=8.0.0"
   },
@@ -9,6 +10,10 @@
   "scripts": {
     "build": "node ./scripts/build.js",
     "start": "node ./scripts/start.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/tadejstanic/wp-hrm-webpack.git"
   },
   "author": "Tadej Stanic",
   "license": "MIT",
@@ -23,8 +28,7 @@
     "css-loader": "^0.26.1",
     "extract-text-webpack-plugin": "2.0.0-beta.4",
     "filehound": "^1.12.4",
-    "fs-extra": "^1.0.0",
-    "fs-promise": "^1.0.0",
+    "fs-extra": "^5.0.0",
     "postcss": "^5.2.8",
     "postcss-cssnext": "^2.9.0",
     "postcss-import": "^9.1.0",
